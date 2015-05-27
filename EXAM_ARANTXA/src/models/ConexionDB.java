@@ -13,7 +13,7 @@ public class ConexionDB {
 	private static final String HOST="localhost";
 	private static final String BBDD="thelaby";
 	private static final String USER="root";
-	private static final String PASS="";
+	private static final String PASS="tonphp";
 	
 	//DATOS DE LA BBDD
 	private String host;
@@ -23,7 +23,7 @@ public class ConexionDB {
 	private String url;
 	
 	//Conexion
-	private static Connection conexion = null;// maneja la conexió
+	private static Connection conexion;// maneja la conexió
 	
 	//Instancia unica
 	private static ConexionDB instance = null;
@@ -43,15 +43,6 @@ public class ConexionDB {
 	      }
 	      return instance;
 	   }
-	//Este método es el mismo que el anterior pero no es necesario
-	//pasar parámetros de base de datos ya que toma los
-	//valores por defecto
-	public static ConexionDB getInstance() {
-	      if(instance == null) {
-	         instance = null;
-	      }
-	      return instance;
-	  }
 	
 	//Metodo que permite la conexion a la base de datos
 	public boolean connectDB(){

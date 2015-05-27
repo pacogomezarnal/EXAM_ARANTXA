@@ -16,11 +16,11 @@ public class Cadete {
 	}
 	
 	public Cadete(int id,
-				  String nombre,
-				  String apellidos,
-				  int edad,
-				  String nacionalidad,
-				  int equipo) {
+	  String nombre,
+	  String apellidos,
+	  int edad,
+	  String nacionalidad,
+	  int equipo) {
 		this.id=id;
 		this.nombre=nombre;
 		this.apellidos=apellidos;
@@ -30,6 +30,7 @@ public class Cadete {
 		
 	}
 
+//	GETS & SETS
 	public int getId() {
 		return id;
 	}

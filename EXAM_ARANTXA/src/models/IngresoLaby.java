@@ -12,9 +12,9 @@ public class IngresoLaby {
 	private final static String COD_COL="cod";
 	
 	//Conexion
-	private Connection conexion = null;// maneja la conexió
-	private Statement instruccion = null;
-	private ResultSet conjuntoResultados = null;
+	private Connection conexion;
+	private Statement instruccion;
+	private ResultSet conjuntoResultados;
 
 	public IngresoLaby() {
 		//Obtenemos la conexion de datos
