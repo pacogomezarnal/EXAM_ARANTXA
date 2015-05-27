@@ -10,17 +10,8 @@ public class Cadete {
 	private String nacionalidad="";
 	private int equipo=0; 
 
-	//Constructores
-	public Cadete() {
-		
-	}
-	
-	public Cadete(int id,
-	  String nombre,
-	  String apellidos,
-	  int edad,
-	  String nacionalidad,
-	  int equipo) {
+
+	public Cadete(int id, String nombre, String apellidos, int edad, String nacionalidad, int equipo) {
 		this.id=id;
 		this.nombre=nombre;
 		this.apellidos=apellidos;

@@ -1,74 +1,50 @@
 package models;
-import java.sql.DriverManager;
+
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.SQLException;
 
-
-
 public class ConexionDB {
-	// DATOS DE LA CONEXION
-	static final String CONTROLADOR_MYSQL= "com.mysql.jdbc.Driver";
-	
-	//DATOS POR DEFECTO
-	private static final String HOST="localhost";
-	private static final String BBDD="thelaby";
-	private static final String USER="root";
-	private static final String PASS="tonphp";
-	
-	//DATOS DE LA BBDD
+	//DATOS DE LA CONEXION
+	static final String CONTROLADOR_MYSQL ="com.mysql.jdbc.Driver";
+
+	//DATOS DE LA BASE DE DATOS
 	private String host;
 	private String bbdd;
 	private String user;
 	private String pass;
-	private String url;
 	
-	//Conexion
-	private static Connection conexion;// maneja la conexió
-	
-	//Instancia unica
-	private static ConexionDB instance = null;
-	
-	private ConexionDB(String HOST,String BBDD,String USER,String PASS) {
+	//CONEXION
+	Connection conexion; //MANEJA LA CONEXION
+
+	public ConexionDB(String HOST, String BBDD, String USER, String PASS){
 		this.host=HOST;
 		this.bbdd=BBDD;
 		this.user=USER;
 		this.pass=PASS;
-		this.url="jdbc:mysql://"+this.host+"/"+this.bbdd;
 	}
 	
-	//Implementar SingleTon
-	public static ConexionDB getInstance(String HOST,String BBDD,String USER,String PASS) {
-	      if(instance == null) {
-	         instance = null;
-	      }
-	      return instance;
-	   }
-	
-	//Metodo que permite la conexion a la base de datos
 	public boolean connectDB(){
 		try{
-			//Lo primero es cargar el controlador MySQL el cual automáticamente se registra
+			//LO PRIMERO ES CARGAR EL CONTROLADOR DE MYSQL EL CUAL AUTOMATICAMENTE DE REGISTRA
 			Class.forName(CONTROLADOR_MYSQL);
-			//Conectarnos a la BBDD
-			conexion = DriverManager.getConnection(this.url,this.user,this.pass);
+			//CONECTAMOS A LA BASE DE DATOS
+			conexion = DriverManager.getConnection("jdbc:mysql://"+this.host+"/"+this.bbdd,this.user,this.pass);
 		}
-		catch( SQLException excepcionSql ) 
+		catch (SQLException excepcionSql)	
 		{
 			excepcionSql.printStackTrace();
-			return false;
 		}
-		catch( ClassNotFoundException noEncontroClase)
+		catch(ClassNotFoundException claseNoEncontrada)
 		{
-			noEncontroClase.printStackTrace();
-			return false;
+			claseNoEncontrada.printStackTrace();
+			return false;			
 		}
-		return true;
-	}
-	
-	//Metodo que devuelve la conexion a la base de datos
-	public static Connection getConexion(){
-		return conexion;
+		return true;			
 	}
 
+    public Connection getConexion() {
+	  return conexion;
+	  }
 }
 

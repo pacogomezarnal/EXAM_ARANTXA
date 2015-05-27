@@ -4,21 +4,26 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 //Clase que comprueba el codigo de entrada
 public class IngresoLaby {
 	//CONSULTA A LA BASE DE DATOS
 	private final static String CHECK_SEL="SELECT cod FROM cod WHERE id=";
-	private final static String COD_COL="cod";
+	private static String COD_COL="cod";
 	
 	//Conexion
-	private Connection conexion;
-	private Statement instruccion;
-	private ResultSet conjuntoResultados;
+	private Connection conexion;// maneja la conexió
+	Statement instruccion = null ;
+	ResultSet conjuntoResultados = null;
 
-	public IngresoLaby() {
+	private ArrayList<String> cadete;
+	;
+	
+	public IngresoLaby(ConexionDB conexion) {
 		//Obtenemos la conexion de datos
-		conexion=ConexionDB.getConexion();		
+		this.conexion = conexion.getConexion();
+		cadete =  new ArrayList<String>();
 	}
 	
 	public String getCod(int id,String apellido){
@@ -41,14 +46,17 @@ public class IngresoLaby {
 		}
 		finally{
 			try{
-				conjuntoResultados.close();
 				instruccion.close();
+				conjuntoResultados.close();
+				conexion.close();
 			}
 			catch( SQLException excepcionSql ) 
 			{
 				excepcionSql.printStackTrace();
 			}
 		}	
+
+		
 	}
 
 }
